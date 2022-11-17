@@ -131,3 +131,4 @@ jobs:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           package : '${{ env.AZURE_WEBAPP_PATH }}/myapp'
 
+> On git push, A git Action will be triggerd 
