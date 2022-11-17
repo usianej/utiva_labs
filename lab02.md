@@ -14,14 +14,14 @@ Login to you e Azure Account
 
   az group create --location eastus --name msdocs-core-sql
 
-> Change jeau24 to any three characters to form a unique name
+- Change jeau24 to any three characters to form a unique name
 
-  az appservice plan create \
+    az appservice plan create \
       --name msdocs-core-sql-plan-jeau24 \
       --resource-group msdocs-core-sql \
       --sku F1
 
-> create the App Service web app using the az webapp create command
+- create the App Service web app using the az webapp create command
 
   az webapp create \
       --name <your-app-service-name> \
@@ -37,7 +37,7 @@ Example
         --plan msdocs-core-sql-plan-jeau24 \
         --resource-group msdocs-core-sql
 
-> create the Azure SQL Database that manages the data in our app
+- create the Azure SQL Database that manages the data in our app
 
   az sql server create \
     --location eastus \
@@ -55,7 +55,7 @@ Example:
         --admin-user admjeff \
         --admin-password Plunder34
 
-> Create Database
+- Create Database
 
   az sql db create \
     --resource-group msdocs-core-sql \
@@ -69,7 +69,7 @@ Example:
         --server sv20sqlapp02 \
         --name coreDb
 
-> Connect the App to the Database
+- Connect the App to the Database
 
     az webapp connection create sql \
         --resource-group msdocs-core-sql \
@@ -93,7 +93,7 @@ Example:
 
 This is a very important section 
 
-> Create firewall exception
+- Create firewall exception
 
   az sql server firewall-rule create --resource-group msdocs-core-sql --server <yoursqlserver> --name LocalAccess --start-ip-address <your-ip> --end-ip-address <your-ip>
 
