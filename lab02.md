@@ -71,13 +71,13 @@ Example:
 
 > Connect the App to the Database
 
-az webapp connection create sql \
-    --resource-group msdocs-core-sql \
-    --name <your-app-service-name> \
-    --target-resource-group msdocs-core-sql \
-    --server <server-name> \
-    --database coreDB \
-    --query configurations
+    az webapp connection create sql \
+        --resource-group msdocs-core-sql \
+        --name <your-app-service-name> \
+        --target-resource-group msdocs-core-sql \
+        --server <server-name> \
+        --database coreDB \
+        --query configurations
 
 Example:
 
@@ -179,9 +179,9 @@ git push azure main:master
 
 ### Monitor
 
-az webapp log tail \
-    --name $APP_SERVICE_NAME \
-    --resource-group $RESOURCE_GROUP_NAME
+    az webapp log tail \
+        --name $APP_SERVICE_NAME \
+        --resource-group $RESOURCE_GROUP_NAME
 
 Example:
 
