@@ -19,8 +19,11 @@ git config --global user.name "FIRST_NAME LAST_NAME"
 git config --global user.email "your_email@example.com"
 
 ----
+## Web App Creation 
 
 - Create webapp in Azure 
+
+## Git Hub
 
 - Create a git hub repository 
 
@@ -36,7 +39,7 @@ git config --global user.email "your_email@example.com"
 
 For this go to cloud shell (bash)
 
-> After the Installation of cloud-cli, you will be able to run Azure CLI  commands
+> After the Installation of cloud-cli, you will be able to run Azure CLI commands
 
 To login to azure cli 
 
@@ -69,6 +72,7 @@ Deployment credentials can also be gotten with other methods because the sdk-aut
 
   setting - secrets - Actions - New repository  Secret 
 
+## Local App Creation 
 
 > On that new folder create your webapp
 
@@ -132,4 +136,10 @@ Find the sample below.
             app-name: ${{ env.AZURE_WEBAPP_NAME }}
             package : '${{ env.AZURE_WEBAPP_PATH }}/myapp'
 
-    > On git push, A git Action will be triggerd 
+## Git Commands 
+
+> On git push, A git Action will be triggerd 
+
+    git add .
+    git commit -m "initial commit"
+    git push
