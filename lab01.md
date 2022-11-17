@@ -15,6 +15,7 @@
 ## Git and GitHub Set Up
 
 git config --global user.name "FIRST_NAME LAST_NAME"
+
 git config --global user.email "your_email@example.com"
 
 ----
@@ -91,44 +92,44 @@ Find the sample below.
 
 ----
 
-name: Deploy ASP.NET CORE
+    name: Deploy ASP.NET CORE
 
-on:
-  push:
-    branches: 
-      - main
+    on:
+    push:
+        branches: 
+        - main
 
-env:
-  AZURE_WEBAPP_NAME: newwebapp021
-  AZURE_WEBAPP_PATH: '.'
-  DOTNET_VERSION: '7.0.100'
+    env:
+    AZURE_WEBAPP_NAME: newwebapp021
+    AZURE_WEBAPP_PATH: '.'
+    DOTNET_VERSION: '7.0.100'
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      
-      - uses: actions/checkout@main
+    jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+        
+        - uses: actions/checkout@main
 
-      - name: Login via Azure CLI
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.azure_credentials }}
+        - name: Login via Azure CLI
+            uses: azure/login@v1
+            with:
+            creds: ${{ secrets.azure_credentials }}
 
-      - name: SETUP .NET CORE
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
+        - name: SETUP .NET CORE
+            uses: actions/setup-dotnet@v1
+            with:
+            dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: dotnet build + publish
-        run: |
-          dotnet build --configuration release
-          dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PATH }}/myapp'
+        - name: dotnet build + publish
+            run: |
+            dotnet build --configuration release
+            dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PATH }}/myapp'
 
-      - name: Deploy to App Service 
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          package : '${{ env.AZURE_WEBAPP_PATH }}/myapp'
+        - name: Deploy to App Service 
+            uses: azure/webapps-deploy@v2
+            with:
+            app-name: ${{ env.AZURE_WEBAPP_NAME }}
+            package : '${{ env.AZURE_WEBAPP_PATH }}/myapp'
 
-> On git push, A git Action will be triggerd 
+    > On git push, A git Action will be triggerd 
