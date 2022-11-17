@@ -37,7 +37,7 @@ Example
         --plan msdocs-core-sql-plan-jeau24 \
         --resource-group msdocs-core-sql
 
-- create the Azure SQL Database that manages the data in our app
+**create the Azure SQL Database that manages the data in our app**
 
   az sql server create \
     --location eastus \
@@ -55,7 +55,7 @@ Example:
         --admin-user admjeff \
         --admin-password Plunder34
 
-- Create Database
+**Create Database**
 
   az sql db create \
     --resource-group msdocs-core-sql \
@@ -69,7 +69,7 @@ Example:
         --server sv20sqlapp02 \
         --name coreDb
 
-- Connect the App to the Database
+**Connect the App to the Database**
 
     az webapp connection create sql \
         --resource-group msdocs-core-sql \
@@ -93,7 +93,7 @@ Example:
 
 This is a very important section 
 
-- Create firewall exception
+**Create firewall exception**
 
   az sql server firewall-rule create --resource-group msdocs-core-sql --server <yoursqlserver> --name LocalAccess --start-ip-address <your-ip> --end-ip-address <your-ip>
 
