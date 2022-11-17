@@ -1,4 +1,4 @@
-# Azure App Service CI/CD Workflow with gitactions
+# Azure App Service CI/CD Workflow with git Actions
 
 ## Local Environment setup
 
