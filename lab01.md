@@ -55,7 +55,7 @@ simillar to this:
 
 output: /subscriptions/f2eca35d-0a61-4937-a650-59e8910a8fb0/resourceGroups/demoapp
 
-az ad sp create-for-rbac --name {myApp} --role contributor --scopes /subscriptions/{subscription-id}/resourceGroups/{MyResourceGroup} --sdk-auth
+> az ad sp create-for-rbac --name {myApp} --role contributor --scopes /subscriptions/{subscription-id}/resourceGroups/{MyResourceGroup} --sdk-auth
 
 Example:
 
@@ -63,7 +63,7 @@ Example:
 
 Deployment credentials can also be gotten with other methods because the sdk-auth is depracated 
 
-    https://learn.microsoft.com/en-us/azure/app-service/deploy-github-actions?tabs=userlevel#generate-deployment-credentials
+> https://learn.microsoft.com/en-us/azure/app-service/deploy-github-actions?tabs=userlevel#generate-deployment-credentials
 
 
 > Add secret to git hub
