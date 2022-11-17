@@ -14,9 +14,7 @@ Login to you e Azure Account
 
   az group create --location eastus --name msdocs-core-sql
 
-- Change *jeau24* to any three characters to form a unique name
-
-Sample-code:
+Change *jeau24* to any three characters to form a unique name
 
     az appservice plan create \
       --name msdocs-core-sql-plan-jeau24 \
@@ -24,8 +22,6 @@ Sample-code:
       --sku F1
 
 - create the App Service web app using the az webapp create command
-
-Sample-code:
 
   az webapp create \
       --name <your-app-service-name> \
