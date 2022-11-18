@@ -14,9 +14,9 @@
 
 ## Git and GitHub Set Up
 
-    git config --global user.name "FIRST_NAME LAST_NAME"
+> git config --global user.name "FIRST_NAME LAST_NAME"
 
-    git config --global user.email "your_email@example.com"
+> git config --global user.email "your_email@example.com"
 
 ----
 ## Web App Creation 
