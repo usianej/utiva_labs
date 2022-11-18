@@ -122,7 +122,9 @@ services.AddDbContext<MyDatabaseContext>(options =>
 > Install nessesary cli tools
 
   cd <sample-root>\DotNetCoreSqlDb
+
   dotnet tool install -g dotnet-ef
+  
   dotnet ef migrations add InitialCreate
 
   dotnet ef database update --connection "<your-azure-sql-connection-string>"
