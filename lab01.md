@@ -66,7 +66,7 @@ Deployment credentials can also be gotten with other methods because the sdk-aut
 > https://learn.microsoft.com/en-us/azure/app-service/deploy-github-actions?tabs=userlevel#generate-deployment-credentials
 
 
-> Add secret to git hub
+### Add secret to git hub
 
 - set a secret on the github repository 
 
@@ -74,7 +74,11 @@ Deployment credentials can also be gotten with other methods because the sdk-aut
 
 ## Local App Creation 
 
-> On that new folder create your webapp
+> clone your git repository to your local workstation (copy the http link from your github) 
+
+    git clone <link>
+
+> On that new folder cloned fron github, cd into the folder and create your webapp
 
   dotnet new webapp
 
@@ -82,9 +86,10 @@ Deployment credentials can also be gotten with other methods because the sdk-aut
 
   The .yml file will be used by github actions 
 
-> dotnet --version 
+> Get the version of your dotnet application and add it to your .yml file 
 
-this is used to check the specific version 
+    dotnet --version 
+
 
 ---
 
