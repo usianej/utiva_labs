@@ -1,4 +1,4 @@
-# Azure App Service CI/CD Workflow with git Actions
+# Azure App Service SUBOMI Workflow with git Actions
 
 ## Local Environment setup
 
