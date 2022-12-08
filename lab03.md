@@ -5,7 +5,7 @@
 ---
 ## Create Cluster 
 
-Follow the walkthrough to create cluster on **web portal** or run the comands below.
+Follow the walkthrough (Class Video) to create cluster on **web portal** or run the comands below.
 
     az group create --name tstrg --location eastus
 
@@ -23,7 +23,7 @@ Use the command before and after cluster creation to see the state of your clust
 
     kubectl config get-clusters
 
-    az aks get-credentials --resource-group bigRG --name kbtAKS
+    az aks get-credentials --resource-group <Resource Group Name> --name <Kubernetes Cluster Name>
 
     kubectl config get-clusters
 
