@@ -13,7 +13,7 @@ Follow the walkthrough (Class Video) to create cluster on **web portal** or run 
 
     ssh-keygen -f .ssh/aks-ssh
 
-    az aks create --resource-group tstrg --name myAKSCluster --ssh-key-value .ssh/aks-ssh.pub
+    az aks create --resource-group tstrg --name myAKSCluster --ssh-key-value .ssh/aks-ssh.pub --node-count 1
 
 ### Check Cluster 
 
