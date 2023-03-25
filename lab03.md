@@ -32,7 +32,13 @@ Use the command before and after cluster creation to see the state of your clust
 
 ## Create app.yml file
 
-The app.yml file should be created in visual cope the template code from https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+The app.yml file should be created in visual cope the template code from https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli 
+
+The above link contains steps that guide in the deployment.
+
+**To access the .yaml file for the deployment without following the guide follow the link below**
+
+![YAML FILE](../resources/azure-vote.yaml)
 
 > Apply the code with the following commands
 
