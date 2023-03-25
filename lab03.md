@@ -38,7 +38,7 @@ The above link contains steps that guide in the deployment.
 
 **To access the .yaml file for the deployment without following the guide follow the link below**
 
-![YAML FILE](../resources/azure-vote.yaml)
+![YAML FILE](resources/azure-vote.yaml)
 
 > Apply the code with the following commands
 
