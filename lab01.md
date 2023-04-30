@@ -53,13 +53,13 @@ To login to azure cli
 
 simillar to this:
 
-output: /subscriptions/f2eca35d-0a61-4937-a650-59e8910a8fb0/resourceGroups/demoapp
+output: /subscriptions/<subscription-id>/resourceGroups/demoapp
 
 > az ad sp create-for-rbac --name {myApp} --role contributor --scopes /subscriptions/{subscription-id}/resourceGroups/{MyResourceGroup} --sdk-auth
 
 Example:
 
-    az ad sp create-for-rbac -n newwebapp021 --role contributor --scope "/subscriptions/e77db16d-5ea4-4932-b1f7-066315e7b399/resourceGroups/classdemo5" --sdk-auth
+    az ad sp create-for-rbac -n newwebapp021 --role contributor --scope "/subscriptions/<subscription-id>/resourceGroups/classdemo5" --sdk-auth
 
 Deployment credentials can also be gotten with other methods because the sdk-auth is depracated 
 
