@@ -22,6 +22,7 @@
 ## Web App Creation 
 
 - Create webapp in Azure 
+- note the version and the type of webapp
 
 ## Git Hub
 
@@ -35,42 +36,28 @@
     cd my-project 
 
     
-### For your secret, you use a service principle 
+### For your secret (Generate deployment credentials)
 
-For this go to cloud shell (bash)
+> The recommended way to authenticate with Azure App Services for GitHub Actions is with a publish profile.
 
-> After the Installation of cloud-cli, you will be able to run Azure CLI commands
+**If linux is being used, you have to set WEBSITE_WEBDEPLOY_USE_SCM**
 
-To login to azure cli 
+Set WEBSITE_WEBDEPLOY_USE_SCM = true in Azure Management Portal settings (under Website → Configuration → Application Settings). Make sure false is in the value field.
 
-- To login and access your resource groups run the folowing commands
+1. Go to your app service in the Azure portal.
 
-    az login 
+2. On the Overview page, select Get Publish profile.
 
-    az group list 
+3. Save the downloaded file. You'll use the contents of the file to create a GitHub secret
 
-> get the resource group that you need to permit 
-
-simillar to this:
-
-output: /subscriptions/f2eca35d-0a61-4937-a650-59e8910a8fb0/resourceGroups/demoapp
-
-> az ad sp create-for-rbac --name {myApp} --role contributor --scopes /subscriptions/{subscription-id}/resourceGroups/{MyResourceGroup} --sdk-auth
-
-Example:
-
-    az ad sp create-for-rbac -n newwebapp021 --role contributor --scope "/subscriptions/e77db16d-5ea4-4932-b1f7-066315e7b399/resourceGroups/classdemo5" --sdk-auth
-
-Deployment credentials can also be gotten with other methods because the sdk-auth is depracated 
-
-> https://learn.microsoft.com/en-us/azure/app-service/deploy-github-actions?tabs=userlevel#generate-deployment-credentials
-
-
-### Add secret to git hub
+### Add secret to github
 
 - set a secret on the github repository 
 
-  setting - secrets - Actions - New repository  Secret 
+    In GitHub, browse your repository. Select Settings > Security > Secrets and variables > Actions > New repository secret.
+
+    To use app-level credentials, paste the contents of the downloaded publish profile file into the secret's value field. Name the secret AZURE_WEBAPP_PUBLISH_PROFILE.
+
 
 ## Local App Creation 
 
@@ -101,47 +88,52 @@ Find the sample below.
 
 ----
 
-    name: Deploy ASP.NET CORE
+```YAML
 
-    on:
-    push:
-        branches: 
-        - main
+name: .NET Core CI
 
-    env:
-    AZURE_WEBAPP_NAME: newwebapp021
-    AZURE_WEBAPP_PATH: '.'
-    DOTNET_VERSION: '7.0.100'
+on: [push]
 
-    jobs:
-    build-and-deploy:
-        runs-on: ubuntu-latest
-        steps:
-        
-        - uses: actions/checkout@main
+env:
+  AZURE_WEBAPP_NAME: my-app-name    # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  DOTNET_VERSION: '3.1.x'           # set this to the dot net version to use
 
-        - name: Login via Azure CLI
-            uses: azure/login@v1
-            with:
-            creds: ${{ secrets.azure_credentials }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-        - name: SETUP .NET CORE
-            uses: actions/setup-dotnet@v1
-            with:
-            dotnet-version: ${{ env.DOTNET_VERSION }}
-
-        - name: dotnet build + publish
-            run: |
-            dotnet build --configuration release
-            dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PATH }}/myapp'
-
-        - name: Deploy to App Service 
-            uses: azure/webapps-deploy@v2
-            with:
-            app-name: ${{ env.AZURE_WEBAPP_NAME }}
-            package : '${{ env.AZURE_WEBAPP_PATH }}/myapp'
+    steps:
+      # Checkout the repo
+      - uses: actions/checkout@main
+      
+      # Setup .NET Core SDK
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }} 
+      
+      # Run dotnet build and publish
+      - name: dotnet build and publish
+        run: |
+          dotnet restore
+          dotnet build --configuration Release
+          dotnet publish -c Release --property:PublishDir='${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp' 
+          
+      # Deploy to Azure Web apps
+      - name: 'Run Azure webapp deploy action using publish profile credentials'
+        uses: azure/webapps-deploy@v2
+        with: 
+          app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }} # Define secret variable in repository settings as per action documentation
+          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
+```
 
 ## Git Commands 
+
+To effectively push your changes to git, you need to enable workfows on the Personal Access Token being used. You could create a new PAT or add the workflow access to on that is being used.
+
+> Select your profile, go to Settings -> Developer Settings > Personal Access Token > Token (classic)
 
 > On git push, A git Action will be triggerd 
 
