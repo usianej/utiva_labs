@@ -1,5 +1,6 @@
 # Azure App Service CI/CD Workflow with git Actions
 
+> https://learn.microsoft.com/en-us/azure/app-service/deploy-github-actions?tabs=applevel
 ## Local Environment setup
 
 - Install git, and Azure Cli
@@ -36,7 +37,7 @@
     cd my-project 
 
     
-### For your secret (Generate deployment credentials)
+### Deployment credentials
 
 > The recommended way to authenticate with Azure App Services for GitHub Actions is with a publish profile.
 
